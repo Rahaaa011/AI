@@ -1,0 +1,408 @@
+No teammates to show
+Hire your first teammate
+Persistent agents that work for you.
+
+No projects
+
+
+
+sales_data
+CSV
+Here is a complete, short GitHub-ready project: Sales Data Analysis using NumPy, pandas, and Matplotlib. It generates sample sales data, calculates revenue, creates charts, and saves results.
+
+Project structure
+Create these files in a folder called sales-data-analysis:
+
+text
+sales-data-analysis/
+│
+├── sales_analysis.py
+├── requirements.txt
+└── README.md
+sales_analysis.py
+python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+# Create output folder
+os.makedirs("output", exist_ok=True)
+
+# Generate sample sales data
+np.random.seed(42)
+
+dates = pd.date_range(start="2025-01-01", periods=365, freq="D")
+
+products = ["Laptop", "Phone", "Headphones"]
+prices = {"Laptop": 999, "Phone": 699, "Headphones": 149}
+
+data = {
+    "date": dates,
+    "product": np.random.choice(products, size=365),
+    "units_sold": np.random.randint(5, 50, size=365)
+}
+
+df = pd.DataFrame(data)
+
+# Add product price and calculate revenue
+df["price"] = df["product"].map(prices)
+df["revenue"] = df["units_sold"] * df["price"]
+
+# Save dataset
+df.to_csv("output/sales_data.csv", index=False)
+
+# Monthly revenue analysis
+df["month"] = df["date"].dt.to_period("M")
+monthly_revenue = df.groupby("month")["revenue"].sum()
+
+# Plot monthly revenue
+plt.figure(figsize=(12, 6))
+monthly_revenue.plot(kind="bar", color="skyblue")
+plt.title("Monthly Sales Revenue")
+plt.xlabel("Month")
+plt.ylabel("Revenue ($)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("output/monthly_revenue.png")
+plt.show()
+
+# Revenue by product
+product_revenue = df.groupby("product")["revenue"].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(8, 5))
+product_revenue.plot(kind="bar", color="teal")
+plt.title("Revenue by Product")
+plt.xlabel("Product")
+plt.ylabel("Revenue ($)")
+plt.tight_layout()
+plt.savefig("output/revenue_by_product.png")
+plt.show()
+
+# Print summary
+print("Sales Data Summary")
+print("------------------")
+print(df.head())
+print("\nTotal revenue:", df["revenue"].sum())
+print("\nRevenue by product:")
+print(product_revenue)
+print("\nBest selling product by revenue:")
+print(product_revenue.idxmax())
+requirements.txt
+text
+numpy
+pandas
+matplotlib
+README.md
+markdown
+# Sales Data Analysis
+
+A simple Python data-analysis project using NumPy, pandas, and Matplotlib.
+
+## Project Description
+
+This project generates one year of sample sales data for three products:
+Laptop, Phone, and Headphones.
+
+It calculates:
+- Daily revenue
+- Monthly revenue
+- Total revenue
+- Revenue by product
+- Best-selling product by revenue
+
+It also creates two charts:
+- Monthly sales revenue
+- Revenue by product
+
+## Technologies Used
+
+- Python
+- NumPy
+- pandas
+- Matplotlib
+
+## How to Run
+
+1. Install the required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the project:
+
+```bash
+python sales_analysis.py
+```
+
+## Output Files
+
+The program creates:
+
+- `output/sales_data.csv`
+- `output/monthly_revenue.png`
+- `output/revenue_by_product.png`
+
+## GitHub Upload Steps
+
+```bash
+git init
+git add .
+git commit -m "Add sales data analysis project"
+git branch -M main
+git remote add origin [https://github.com/YOUR_USERNAME/sales-data-analysis.git](https://github.com/YOUR_USERNAME/sales-data-analysis.git)
+git push -u origin main
+```
+
+Replace `YOUR_USERNAME` with your GitHub username.
+What you get
+The project creates a CSV dataset and two charts: monthly revenue and revenue by product. In the generated sample, Phone produced the highest revenue, followed by Laptop and Headphones.
+
+Before uploading
+Add a .gitignore file if you do not want to upload generated output files:
+
+text
+output/
+__pycache__/
+*.pyc
+This keeps your GitHub repository clean while still allowing others to run the project and generate the charts themselves.
+
+monthly_revenue.png
+revenue_by_product.png
+i nned a full code in the folder so i can upload drextly
+
+
+
+README
+Document
+
+requirements
+Text
+
+sales_analysis
+Python
+I created a complete, ready-to-upload GitHub project folder for you: sales-data-analysis. It contains the Python code, requirements file, README, and .gitignore.
+
+Download the project
+Download these files and put them in one folder named sales-data-analysis:
+
+sales_analysis.py — main Python program
+
+requirements.txt — required libraries
+
+README.md — project explanation and GitHub instructions
+
+.gitignore — prevents unnecessary files from uploading
+
+The project folder has been created with all required files.
+
+sales_analysis.py
+python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+os.makedirs("output", exist_ok=True)
+
+np.random.seed(42)
+
+dates = pd.date_range(start="2025-01-01", periods=365, freq="D")
+products = ["Laptop", "Phone", "Headphones"]
+prices = {"Laptop": 999, "Phone": 699, "Headphones": 149}
+
+df = pd.DataFrame({
+    "date": dates,
+    "product": np.random.choice(products, size=365),
+    "units_sold": np.random.randint(5, 50, size=365)
+})
+
+df["price"] = df["product"].map(prices)
+df["revenue"] = df["units_sold"] * df["price"]
+df["month"] = df["date"].dt.to_period("M")
+
+df.to_csv("output/sales_data.csv", index=False)
+
+monthly_revenue = df.groupby("month")["revenue"].sum()
+
+plt.figure(figsize=(12, 6))
+monthly_revenue.plot(kind="bar", color="skyblue")
+plt.title("Monthly Sales Revenue")
+plt.xlabel("Month")
+plt.ylabel("Revenue ($)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("output/monthly_revenue.png")
+plt.show()
+
+product_revenue = df.groupby("product")["revenue"].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(8, 5))
+product_revenue.plot(kind="bar", color="teal")
+plt.title("Revenue by Product")
+plt.xlabel("Product")
+plt.ylabel("Revenue ($)")
+plt.tight_layout()
+plt.savefig("output/revenue_by_product.png")
+plt.show()
+
+print("Sales Data Summary")
+print("------------------")
+print(df.head())
+print("\nTotal revenue:", df["revenue"].sum())
+print("\nRevenue by product:")
+print(product_revenue)
+print("\nBest-selling product by revenue:")
+print(product_revenue.idxmax())
+requirements.txt
+text
+numpy
+pandas
+matplotlib
+README.md
+markdown
+# Sales Data Analysis
+
+A simple Python data-analysis project using NumPy, pandas, and Matplotlib.
+
+## Description
+
+This project generates one year of sample sales data for three products:
+Laptop, Phone, and Headphones.
+
+It calculates:
+- Daily revenue
+- Monthly revenue
+- Total revenue
+- Revenue by product
+- Best-selling product by revenue
+
+It also creates two charts:
+- Monthly sales revenue
+- Revenue by product
+
+## Technologies Used
+
+- Python
+- NumPy
+- pandas
+- Matplotlib
+
+## How to Run
+
+1. Install the required libraries:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the project:
+
+```bash
+python sales_analysis.py
+```
+
+## Output Files
+
+The program creates:
+
+- `output/sales_data.csv`
+- `output/monthly_revenue.png`
+- `output/revenue_by_product.png`
+
+## GitHub Upload Steps
+
+```bash
+git init
+git add .
+git commit -m "Add sales data analysis project"
+git branch -M main
+git remote add origin [https://github.com/YOUR_USERNAME/sales-data-analysis.git](https://github.com/YOUR_USERNAME/sales-data-analysis.git)
+git push -u origin main
+```
+
+Replace `YOUR_USERNAME` with your GitHub username.
+.gitignore
+text
+output/
+__pycache__/
+*.pyc
+How to upload to GitHub
+Create a new repository on GitHub named sales-data-analysis.
+
+Put the four files above inside a local folder with the same name.
+
+Open Terminal or Command Prompt inside that folder.
+
+Run:
+
+bash
+git init
+git add .
+git commit -m "Add sales data analysis project"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/sales-data-analysis.git
+git push -u origin main
+Replace YOUR_USERNAME with your actual GitHub username. The project uses NumPy to generate data, pandas to analyze it, and Matplotlib to create the charts.
+
+
+⠧
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+os.makedirs("output", exist_ok=True)
+
+np.random.seed(42)
+
+dates = pd.date_range(start="2025-01-01", periods=365, freq="D")
+products = ["Laptop", "Phone", "Headphones"]
+prices = {"Laptop": 999, "Phone": 699, "Headphones": 149}
+
+df = pd.DataFrame({
+    "date": dates,
+    "product": np.random.choice(products, size=365),
+    "units_sold": np.random.randint(5, 50, size=365)
+})
+
+df["price"] = df["product"].map(prices)
+df["revenue"] = df["units_sold"] * df["price"]
+df["month"] = df["date"].dt.to_period("M")
+
+df.to_csv("output/sales_data.csv", index=False)
+
+monthly_revenue = df.groupby("month")["revenue"].sum()
+
+plt.figure(figsize=(12, 6))
+monthly_revenue.plot(kind="bar", color="skyblue")
+plt.title("Monthly Sales Revenue")
+plt.xlabel("Month")
+plt.ylabel("Revenue ($)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("output/monthly_revenue.png")
+plt.show()
+
+product_revenue = df.groupby("product")["revenue"].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(8, 5))
+product_revenue.plot(kind="bar", color="teal")
+plt.title("Revenue by Product")
+plt.xlabel("Product")
+plt.ylabel("Revenue ($)")
+plt.tight_layout()
+plt.savefig("output/revenue_by_product.png")
+plt.show()
+
+print("Sales Data Summary")
+print("------------------")
+print(df.head())
+print("\nTotal revenue:", df["revenue"].sum())
+print("\nRevenue by product:")
+print(product_revenue)
+print("\nBest-selling product by revenue:")
+print(product_revenue.idxmax())
